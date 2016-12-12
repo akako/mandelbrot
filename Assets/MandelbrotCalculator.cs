@@ -18,7 +18,6 @@ public class MandelbrotCalculator
 
     public float Calculate(double baseX, double baseY)
     {
-        Vector2 z = Vector2.zero;
         var x = 0.0;
         var y = 0.0;
         for (int i = 0; i < maxIteration; i++)
