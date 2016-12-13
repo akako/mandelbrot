@@ -5,33 +5,24 @@ using System;
 
 public class MandelbrotCalculator
 {
-    double exponent = 2.0;
-    int maxIteration = 50;
-    double threshold = 2.0;
+    const int CALCULATE_LIMIT = 50;
 
-    public MandelbrotCalculator(double exponent, int maxIteration, double threshold)
+    public static float Calculate(double baseX, double baseY)
     {
-        this.exponent = exponent;
-        this.maxIteration = maxIteration;
-        this.threshold = threshold;
-    }
+        double x = 0.0, y = 0.0, cacheX = 0.0, cacheY = 0.0;
 
-    public float Calculate(double baseX, double baseY)
-    {
-        var x = 0.0;
-        var y = 0.0;
-        for (int i = 0; i < maxIteration; i++)
+        for (int i = 0; i < CALCULATE_LIMIT; i++)
         {
-            var a = x == 0 ? 0.0 : Math.Atan2(y, x) * exponent;
-            var powed = Math.Pow(Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2)), exponent);
-            x = Math.Cos(a) * powed;
-            y = Math.Sin(a) * powed;
-            x += baseX;
-            y += baseY;
-            if (Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2)) > threshold)
+            cacheX = x * x - y * y + baseX;
+            cacheY = x * y * 2.0 + baseY;
+
+            if (cacheX * cacheX + cacheY * cacheY > 4.0)
             {
-                return (float)i / maxIteration;
+                return (float)i / CALCULATE_LIMIT;
             }
+
+            x = cacheX;
+            y = cacheY;
         }
         return 1f;
     }

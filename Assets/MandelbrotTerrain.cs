@@ -8,11 +8,9 @@ public class MandelbrotTerrain : MonoBehaviour
     double baseX = -1.75;
     double baseY = 0.0;
     double size = 10.0;
-    MandelbrotCalculator calculator;
 
     void Start()
     {
-        calculator = new MandelbrotCalculator(2.0, 20, 2.0);
         StartCoroutine(UpdateTerrainCoroutine());
     }
 
@@ -33,7 +31,7 @@ public class MandelbrotTerrain : MonoBehaviour
                 {
                     var coordinateX = baseX - size / 2.0 + (double)x / terrainData.heightmapWidth * size;
                     var coordinateY = baseY - size / 2.0 + (double)y / terrainData.heightmapHeight * size;
-                    heights[x, y] = calculator.Calculate(coordinateX, coordinateY);
+                    heights[x, y] = MandelbrotCalculator.Calculate(coordinateX, coordinateY);
                 }
             }
             terrainData.SetHeights(0, 0, heights);
