@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-
-public class MandelbrotCalculator
+﻿public class MandelbrotCalculator
 {
     const int CALCULATE_LIMIT = 50;
 
